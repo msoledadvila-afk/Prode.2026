@@ -58,15 +58,30 @@
 
         const { useState, useEffect, useRef, useMemo } = React;
 
+        // --- DEFINICIÓN DE LOS 48 EQUIPOS Y 12 GRUPOS ---
+        const TOURNAMENT_GROUPS = {
+            'A': [{ name: 'México', flag: '🇲🇽' }, { name: 'Angola', flag: '🇦🇴' }, { name: 'Rep. de Corea', flag: '🇰🇷' }, { name: 'Chequia', flag: '🇨🇿' }],
+            'B': [{ name: 'Canadá', flag: '🇨🇦' }, { name: 'Bosnia', flag: '🇧🇦' }, { name: 'Qatar', flag: '🇶🇦' }, { name: 'Suiza', flag: '🇨🇭' }],
+            'C': [{ name: 'Brasil', flag: '🇧🇷' }, { name: 'Marruecos', flag: '🇲🇦' }, { name: 'N. Zelanda', flag: '🇳🇿' }, { name: 'Escocia', flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿' }],
+            'D': [{ name: 'Argentina', flag: '🇦🇷' }, { name: 'Argelia', flag: '🇩🇿' }, { name: 'Australia', flag: '🇦🇺' }, { name: 'Turquía', flag: '🇹🇷' }],
+            'E': [{ name: 'Alemania', flag: '🇩🇪' }, { name: 'Costa Rica', flag: '🇨🇷' }, { name: 'C. de Marfil', flag: '🇨🇮' }, { name: 'Polonia', flag: '🇵🇱' }],
+            'F': [{ name: 'España', flag: '🇪🇸' }, { name: 'Ecuador', flag: '🇪🇨' }, { name: 'A. Saudita', flag: '🇸🇦' }, { name: 'Suecia', flag: '🇸🇪' }],
+            'G': [{ name: 'Francia', flag: '🇫🇷' }, { name: 'Honduras', flag: '🇭🇳' }, { name: 'Japón', flag: '🇯🇵' }, { name: 'Noruega', flag: '🇳🇴' }],
+            'H': [{ name: 'EE.UU.', flag: '🇺🇸' }, { name: 'Senegal', flag: '🇸🇳' }, { name: 'Irán', flag: '🇮🇷' }, { name: 'Gales', flag: '🏴󠁧󠁢󠁷󠁬󠁳󠁿' }],
+            'I': [{ name: 'Inglaterra', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' }, { name: 'Jamaica', flag: '🇯🇲' }, { name: 'Egipto', flag: '🇪🇬' }, { name: 'Austria', flag: '🇦🇹' }],
+            'J': [{ name: 'Portugal', flag: '🇵🇹' }, { name: 'Mali', flag: '🇲🇱' }, { name: 'Irak', flag: '🇮🇶' }, { name: 'Colombia', flag: '🇨🇴' }],
+            'K': [{ name: 'Bélgica', flag: '🇧🇪' }, { name: 'Panamá', flag: '🇵🇦' }, { name: 'Nigeria', flag: '🇳🇬' }, { name: 'Chile', flag: '🇨🇱' }],
+            'L': [{ name: 'Países Bajos', flag: '🇳🇱' }, { name: 'Venezuela', flag: '🇻🇪' }, { name: 'Uzbekistán', flag: '🇺🇿' }, { name: 'Uruguay', flag: '🇺🇾' }]
+        };
+
         // --- PARTIDOS (Ejemplo con el nuevo formato de fases) ---
         // Se puede expandir luego con los 104 partidos oficiales.
         const initialMatches = [
-            // GRUPOS (Ejemplo Grupo A y J)
-            { id: 1, stage: 'grupos', home: 'México', homeFlag: '🇲🇽', away: 'Sudáfrica', awayFlag: '🇿🇦', date: '11 Jun 2026', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 2, stage: 'grupos', home: 'Rep. de Corea', homeFlag: '🇰🇷', away: 'Chequia', awayFlag: '🇨🇿', date: '12 Jun 2026', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 3, stage: 'grupos', home: 'Argentina', homeFlag: '🇦🇷', away: 'Argelia', awayFlag: '🇩🇿', date: '13 Jun 2026', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 4, stage: 'grupos', home: 'Brasil', homeFlag: '🇧🇷', away: 'Marruecos', awayFlag: '🇲🇦', date: '14 Jun 2026', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 5, stage: 'grupos', home: 'España', homeFlag: '🇪🇸', away: 'Cabo Verde', awayFlag: '🇨🇻', date: '15 Jun 2026', status: 'pending', realHomeScore: null, realAwayScore: null },
+            // GRUPOS
+            { id: 1, stage: 'grupos', home: 'México', homeFlag: '🇲🇽', away: 'Angola', awayFlag: '🇦🇴', date: '11 Jun 2026', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 2, stage: 'grupos', home: 'Argentina', homeFlag: '🇦🇷', away: 'Turquía', awayFlag: '🇹🇷', date: '13 Jun 2026', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 3, stage: 'grupos', home: 'Brasil', homeFlag: '🇧🇷', away: 'Escocia', awayFlag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', date: '14 Jun 2026', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 4, stage: 'grupos', home: 'España', homeFlag: '🇪🇸', away: 'Ecuador', awayFlag: '🇪🇨', date: '15 Jun 2026', status: 'pending', realHomeScore: null, realAwayScore: null },
             
             // 16AVOS DE FINAL (Ronda de 32)
             { id: 101, stage: '16avos', home: '1A', homeFlag: '❓', away: '3C/D/E', awayFlag: '❓', date: '28 Jun 2026', status: 'pending', realHomeScore: null, realAwayScore: null },
@@ -209,15 +224,19 @@
                 }
             };
 
-            // Calcular posiciones reales del torneo (Solo suma Fase de Grupos)
+            // Calcular posiciones reales del torneo agrupado
             const tournamentStandings = useMemo(() => {
+                // Inicializamos con TODOS los 48 equipos divididos en sus grupos
                 const standings = {};
-                matches.forEach(m => {
-                    // Solo calculamos standings para equipos con nombre real en fase de grupos
-                    if (m.stage !== 'grupos' || m.home.includes('Ganador') || m.home.includes('1A')) return;
+                Object.entries(TOURNAMENT_GROUPS).forEach(([groupName, teams]) => {
+                    teams.forEach(team => {
+                        standings[team.name] = { name: team.name, flag: team.flag, group: groupName, pts: 0, pj: 0, gf: 0, gc: 0 };
+                    });
+                });
 
-                    if (!standings[m.home]) standings[m.home] = { name: m.home, flag: m.homeFlag, pts: 0, pj: 0, gf: 0, gc: 0 };
-                    if (!standings[m.away]) standings[m.away] = { name: m.away, flag: m.awayFlag, pts: 0, pj: 0, gf: 0, gc: 0 };
+                // Sumamos puntos de los partidos de fase de grupos cargados
+                matches.forEach(m => {
+                    if (m.stage !== 'grupos' || !standings[m.home] || !standings[m.away]) return;
                     
                     if (m.status === 'finished') {
                         const h = parseInt(m.realHomeScore), a = parseInt(m.realAwayScore);
@@ -229,12 +248,20 @@
                         else { standings[m.home].pts++; standings[m.away].pts++; }
                     }
                 });
-                return Object.values(standings).sort((a, b) => {
-                    if (b.pts !== a.pts) return b.pts - a.pts;
-                    const diffA = a.gf - a.gc, diffB = b.gf - b.gc;
-                    if (diffB !== diffA) return diffB - diffA;
-                    return b.gf - a.gf;
+
+                // Devolvemos el objeto ordenado por grupo
+                const groupedStandings = {};
+                Object.keys(TOURNAMENT_GROUPS).forEach(g => {
+                    groupedStandings[g] = Object.values(standings)
+                        .filter(t => t.group === g)
+                        .sort((a, b) => {
+                            if (b.pts !== a.pts) return b.pts - a.pts;
+                            const diffA = a.gf - a.gc, diffB = b.gf - b.gc;
+                            if (diffB !== diffA) return diffB - diffA;
+                            return b.gf - a.gf;
+                        });
                 });
+                return groupedStandings;
             }, [matches]);
 
             const isSimulated = matches.some(m => m.status === 'finished');
@@ -309,32 +336,38 @@
                             <div className="space-y-6">
                                 <div>
                                     <h2 className="text-2xl font-black text-sky-900 mb-1">Mundial 2026</h2>
-                                    <p className="text-sky-600 font-medium text-sm mb-6">Fase de Grupos - Rendimiento Real.</p>
+                                    <p className="text-sky-600 font-medium text-sm mb-6">Fase de Grupos (A a L) - Rendimiento Real.</p>
                                 </div>
-                                <div className="bg-white rounded-2xl border border-sky-200 shadow-sm overflow-hidden">
-                                    <table className="w-full text-left border-collapse">
-                                        <thead>
-                                            <tr className="bg-sky-100/50 border-b border-sky-200 text-[10px] text-sky-700 uppercase font-bold">
-                                                <th className="p-3 w-8 text-center">#</th>
-                                                <th className="p-3">Equipo</th>
-                                                <th className="p-3 text-center">PJ</th>
-                                                <th className="p-3 text-center">DIF</th>
-                                                <th className="p-3 text-right text-sky-900">PTS</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="divide-y divide-sky-100">
-                                            {tournamentStandings.map((team, i) => (
-                                                <tr key={team.name} className="hover:bg-sky-50 transition-colors">
-                                                    <td className="p-3 text-center text-sky-500 font-bold text-sm">{i + 1}</td>
-                                                    <td className="p-3 font-bold text-slate-700 flex items-center gap-2 text-sm"><span className="text-xl">{team.flag}</span> {team.name}</td>
-                                                    <td className="p-3 text-center text-slate-500 text-sm">{team.pj}</td>
-                                                    <td className="p-3 text-center text-slate-500 text-sm font-medium">{team.gf - team.gc > 0 ? `+${team.gf - team.gc}` : team.gf - team.gc}</td>
-                                                    <td className="p-3 text-right font-black text-sky-700 text-base">{team.pts}</td>
+                                
+                                {Object.entries(tournamentStandings).map(([groupName, teams]) => (
+                                    <div key={groupName} className="bg-white rounded-2xl border border-sky-200 shadow-sm overflow-hidden mb-6">
+                                        <div className="bg-sky-600 text-white px-4 py-2 font-black text-sm uppercase tracking-wider flex items-center gap-2">
+                                            <Globe className="w-4 h-4 text-sky-200"/> Grupo {groupName}
+                                        </div>
+                                        <table className="w-full text-left border-collapse">
+                                            <thead>
+                                                <tr className="bg-sky-50 border-b border-sky-200 text-[10px] text-sky-700 uppercase font-bold">
+                                                    <th className="p-3 w-8 text-center">#</th>
+                                                    <th className="p-3">Equipo</th>
+                                                    <th className="p-3 text-center">PJ</th>
+                                                    <th className="p-3 text-center">DIF</th>
+                                                    <th className="p-3 text-right text-sky-900">PTS</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
+                                            </thead>
+                                            <tbody className="divide-y divide-sky-100">
+                                                {teams.map((team, i) => (
+                                                    <tr key={team.name} className={`transition-colors ${i < 2 ? 'bg-green-50/40 hover:bg-green-100/60' : 'hover:bg-sky-50'}`}>
+                                                        <td className={`p-3 text-center font-bold text-sm ${i < 2 ? 'text-green-600' : 'text-sky-500'}`}>{i + 1}</td>
+                                                        <td className="p-3 font-bold text-slate-700 flex items-center gap-2 text-sm"><span className="text-xl">{team.flag}</span> {team.name}</td>
+                                                        <td className="p-3 text-center text-slate-500 text-sm">{team.pj}</td>
+                                                        <td className="p-3 text-center text-slate-500 text-sm font-medium">{team.gf - team.gc > 0 ? `+${team.gf - team.gc}` : team.gf - team.gc}</td>
+                                                        <td className="p-3 text-right font-black text-sky-700 text-base">{team.pts}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                ))}
                             </div>
                         )}
 
