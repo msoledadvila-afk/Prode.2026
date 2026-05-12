@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Prode Oficina 2026 - Edición Celeste y Blanca</title>
+    <title>GruProde 2026 - Edición Celeste y Blanca</title>
     
     <!-- Tailwind CSS para los estilos -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -20,7 +20,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
 </head>
-<body class="bg-sky-50 text-slate-800 antialiased selection:bg-sky-300 selection:text-sky-900">
+<body class="text-slate-800 antialiased selection:bg-sky-300 selection:text-sky-900 min-h-screen" style="background-image: linear-gradient(180deg, #7DD3FC 33.33%, #ffffff 33.33%, #ffffff 66.66%, #7DD3FC 66.66%); background-attachment: fixed;">
     
     <div id="root"></div>
 
@@ -54,7 +54,7 @@
         const ChevronRight = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>;
         const Cloud = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>;
         const Globe = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>;
-        const Sun = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>;
+        const Zap = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>;
         const LogOutIcon = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>;
         const Lock = ({className}) => <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>;
 
@@ -84,81 +84,81 @@
             return '❓';
         };
 
-        // --- LOS 104 PARTIDOS OFICIALES ---
+        // --- LOS 104 PARTIDOS OFICIALES (Horarios actualizados a HORA ARGENTINA UTC-3) ---
         const initialMatches = [
             // --- GRUPOS (72 Partidos) ---
-            { id: 1, stage: 'grupos', home: 'México', homeFlag: getFlag('México'), away: 'Sudáfrica', awayFlag: getFlag('Sudáfrica'), date: '11 Jun 2026 - 15:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 2, stage: 'grupos', home: 'Corea del Sur', homeFlag: getFlag('Corea del Sur'), away: 'Rep. Checa', awayFlag: getFlag('Rep. Checa'), date: '11 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 3, stage: 'grupos', home: 'Canadá', homeFlag: getFlag('Canadá'), away: 'Bosnia y Herz.', awayFlag: getFlag('Bosnia y Herz.'), date: '12 Jun 2026 - 15:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 4, stage: 'grupos', home: 'EE.UU.', homeFlag: getFlag('EE.UU.'), away: 'Paraguay', awayFlag: getFlag('Paraguay'), date: '12 Jun 2026 - 21:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 5, stage: 'grupos', home: 'Qatar', homeFlag: getFlag('Qatar'), away: 'Suiza', awayFlag: getFlag('Suiza'), date: '13 Jun 2026 - 15:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 6, stage: 'grupos', home: 'Brasil', homeFlag: getFlag('Brasil'), away: 'Marruecos', awayFlag: getFlag('Marruecos'), date: '13 Jun 2026 - 18:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 7, stage: 'grupos', home: 'Haití', homeFlag: getFlag('Haití'), away: 'Escocia', awayFlag: getFlag('Escocia'), date: '13 Jun 2026 - 21:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 8, stage: 'grupos', home: 'Australia', homeFlag: getFlag('Australia'), away: 'Turquía', awayFlag: getFlag('Turquía'), date: '13 Jun 2026 - 00:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 9, stage: 'grupos', home: 'Alemania', homeFlag: getFlag('Alemania'), away: 'Curazao', awayFlag: getFlag('Curazao'), date: '14 Jun 2026 - 13:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 10, stage: 'grupos', home: 'Países Bajos', homeFlag: getFlag('Países Bajos'), away: 'Japón', awayFlag: getFlag('Japón'), date: '14 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 11, stage: 'grupos', home: 'C. de Marfil', homeFlag: getFlag('C. de Marfil'), away: 'Ecuador', awayFlag: getFlag('Ecuador'), date: '14 Jun 2026 - 19:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 12, stage: 'grupos', home: 'Suecia', homeFlag: getFlag('Suecia'), away: 'Túnez', awayFlag: getFlag('Túnez'), date: '14 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 13, stage: 'grupos', home: 'España', homeFlag: getFlag('España'), away: 'Cabo Verde', awayFlag: getFlag('Cabo Verde'), date: '15 Jun 2026 - 12:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 14, stage: 'grupos', home: 'Bélgica', homeFlag: getFlag('Bélgica'), away: 'Egipto', awayFlag: getFlag('Egipto'), date: '15 Jun 2026 - 15:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 15, stage: 'grupos', home: 'A. Saudita', homeFlag: getFlag('A. Saudita'), away: 'Uruguay', awayFlag: getFlag('Uruguay'), date: '15 Jun 2026 - 18:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 16, stage: 'grupos', home: 'Irán', homeFlag: getFlag('Irán'), away: 'N. Zelanda', awayFlag: getFlag('N. Zelanda'), date: '15 Jun 2026 - 21:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 17, stage: 'grupos', home: 'Francia', homeFlag: getFlag('Francia'), away: 'Senegal', awayFlag: getFlag('Senegal'), date: '16 Jun 2026 - 15:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 18, stage: 'grupos', home: 'Irak', homeFlag: getFlag('Irak'), away: 'Noruega', awayFlag: getFlag('Noruega'), date: '16 Jun 2026 - 18:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 19, stage: 'grupos', home: 'Argentina', homeFlag: getFlag('Argentina'), away: 'Argelia', awayFlag: getFlag('Argelia'), date: '16 Jun 2026 - 21:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 20, stage: 'grupos', home: 'Austria', homeFlag: getFlag('Austria'), away: 'Jordania', awayFlag: getFlag('Jordania'), date: '16 Jun 2026 - 00:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 21, stage: 'grupos', home: 'Portugal', homeFlag: getFlag('Portugal'), away: 'RD Congo', awayFlag: getFlag('RD Congo'), date: '17 Jun 2026 - 13:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 22, stage: 'grupos', home: 'Inglaterra', homeFlag: getFlag('Inglaterra'), away: 'Croacia', awayFlag: getFlag('Croacia'), date: '17 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 23, stage: 'grupos', home: 'Ghana', homeFlag: getFlag('Ghana'), away: 'Panamá', awayFlag: getFlag('Panamá'), date: '17 Jun 2026 - 19:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 24, stage: 'grupos', home: 'Uzbekistán', homeFlag: getFlag('Uzbekistán'), away: 'Colombia', awayFlag: getFlag('Colombia'), date: '17 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 25, stage: 'grupos', home: 'Rep. Checa', homeFlag: getFlag('Rep. Checa'), away: 'Sudáfrica', awayFlag: getFlag('Sudáfrica'), date: '18 Jun 2026 - 12:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 26, stage: 'grupos', home: 'Suiza', homeFlag: getFlag('Suiza'), away: 'Bosnia y Herz.', awayFlag: getFlag('Bosnia y Herz.'), date: '18 Jun 2026 - 15:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 27, stage: 'grupos', home: 'Canadá', homeFlag: getFlag('Canadá'), away: 'Qatar', awayFlag: getFlag('Qatar'), date: '18 Jun 2026 - 18:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 28, stage: 'grupos', home: 'México', homeFlag: getFlag('México'), away: 'Corea del Sur', awayFlag: getFlag('Corea del Sur'), date: '18 Jun 2026 - 21:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 29, stage: 'grupos', home: 'EE.UU.', homeFlag: getFlag('EE.UU.'), away: 'Australia', awayFlag: getFlag('Australia'), date: '19 Jun 2026 - 15:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 30, stage: 'grupos', home: 'Escocia', homeFlag: getFlag('Escocia'), away: 'Marruecos', awayFlag: getFlag('Marruecos'), date: '19 Jun 2026 - 18:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 31, stage: 'grupos', home: 'Brasil', homeFlag: getFlag('Brasil'), away: 'Haití', awayFlag: getFlag('Haití'), date: '19 Jun 2026 - 21:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 32, stage: 'grupos', home: 'Turquía', homeFlag: getFlag('Turquía'), away: 'Paraguay', awayFlag: getFlag('Paraguay'), date: '19 Jun 2026 - 00:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 33, stage: 'grupos', home: 'Países Bajos', homeFlag: getFlag('Países Bajos'), away: 'Suecia', awayFlag: getFlag('Suecia'), date: '20 Jun 2026 - 13:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 34, stage: 'grupos', home: 'Alemania', homeFlag: getFlag('Alemania'), away: 'C. de Marfil', awayFlag: getFlag('C. de Marfil'), date: '20 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 35, stage: 'grupos', home: 'Ecuador', homeFlag: getFlag('Ecuador'), away: 'Curazao', awayFlag: getFlag('Curazao'), date: '20 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 36, stage: 'grupos', home: 'Túnez', homeFlag: getFlag('Túnez'), away: 'Japón', awayFlag: getFlag('Japón'), date: '20 Jun 2026 - 00:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 37, stage: 'grupos', home: 'España', homeFlag: getFlag('España'), away: 'A. Saudita', awayFlag: getFlag('A. Saudita'), date: '21 Jun 2026 - 12:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 38, stage: 'grupos', home: 'Bélgica', homeFlag: getFlag('Bélgica'), away: 'Irán', awayFlag: getFlag('Irán'), date: '21 Jun 2026 - 15:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 39, stage: 'grupos', home: 'Uruguay', homeFlag: getFlag('Uruguay'), away: 'Cabo Verde', awayFlag: getFlag('Cabo Verde'), date: '21 Jun 2026 - 18:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 40, stage: 'grupos', home: 'N. Zelanda', homeFlag: getFlag('N. Zelanda'), away: 'Egipto', awayFlag: getFlag('Egipto'), date: '21 Jun 2026 - 21:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 41, stage: 'grupos', home: 'Argentina', homeFlag: getFlag('Argentina'), away: 'Austria', awayFlag: getFlag('Austria'), date: '22 Jun 2026 - 13:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 42, stage: 'grupos', home: 'Francia', homeFlag: getFlag('Francia'), away: 'Irak', awayFlag: getFlag('Irak'), date: '22 Jun 2026 - 17:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 43, stage: 'grupos', home: 'Noruega', homeFlag: getFlag('Noruega'), away: 'Senegal', awayFlag: getFlag('Senegal'), date: '22 Jun 2026 - 20:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 44, stage: 'grupos', home: 'Jordania', homeFlag: getFlag('Jordania'), away: 'Argelia', awayFlag: getFlag('Argelia'), date: '22 Jun 2026 - 23:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 45, stage: 'grupos', home: 'Portugal', homeFlag: getFlag('Portugal'), away: 'Uzbekistán', awayFlag: getFlag('Uzbekistán'), date: '23 Jun 2026 - 13:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 46, stage: 'grupos', home: 'Inglaterra', homeFlag: getFlag('Inglaterra'), away: 'Ghana', awayFlag: getFlag('Ghana'), date: '23 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 47, stage: 'grupos', home: 'Panamá', homeFlag: getFlag('Panamá'), away: 'Croacia', awayFlag: getFlag('Croacia'), date: '23 Jun 2026 - 19:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 48, stage: 'grupos', home: 'Colombia', homeFlag: getFlag('Colombia'), away: 'RD Congo', awayFlag: getFlag('RD Congo'), date: '23 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 49, stage: 'grupos', home: 'Suiza', homeFlag: getFlag('Suiza'), away: 'Canadá', awayFlag: getFlag('Canadá'), date: '24 Jun 2026 - 15:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 50, stage: 'grupos', home: 'Bosnia y Herz.', homeFlag: getFlag('Bosnia y Herz.'), away: 'Qatar', awayFlag: getFlag('Qatar'), date: '24 Jun 2026 - 15:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 51, stage: 'grupos', home: 'Escocia', homeFlag: getFlag('Escocia'), away: 'Brasil', awayFlag: getFlag('Brasil'), date: '24 Jun 2026 - 18:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 52, stage: 'grupos', home: 'Marruecos', homeFlag: getFlag('Marruecos'), away: 'Haití', awayFlag: getFlag('Haití'), date: '24 Jun 2026 - 18:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 53, stage: 'grupos', home: 'Rep. Checa', homeFlag: getFlag('Rep. Checa'), away: 'México', awayFlag: getFlag('México'), date: '24 Jun 2026 - 21:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 54, stage: 'grupos', home: 'Sudáfrica', homeFlag: getFlag('Sudáfrica'), away: 'Corea del Sur', awayFlag: getFlag('Corea del Sur'), date: '24 Jun 2026 - 21:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 55, stage: 'grupos', home: 'Curazao', homeFlag: getFlag('Curazao'), away: 'C. de Marfil', awayFlag: getFlag('C. de Marfil'), date: '25 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 56, stage: 'grupos', home: 'Ecuador', homeFlag: getFlag('Ecuador'), away: 'Alemania', awayFlag: getFlag('Alemania'), date: '25 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 57, stage: 'grupos', home: 'Japón', homeFlag: getFlag('Japón'), away: 'Suecia', awayFlag: getFlag('Suecia'), date: '25 Jun 2026 - 19:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 58, stage: 'grupos', home: 'Túnez', homeFlag: getFlag('Túnez'), away: 'Países Bajos', awayFlag: getFlag('Países Bajos'), date: '25 Jun 2026 - 19:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 59, stage: 'grupos', home: 'Turquía', homeFlag: getFlag('Turquía'), away: 'EE.UU.', awayFlag: getFlag('EE.UU.'), date: '25 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 60, stage: 'grupos', home: 'Paraguay', homeFlag: getFlag('Paraguay'), away: 'Australia', awayFlag: getFlag('Australia'), date: '25 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 61, stage: 'grupos', home: 'Noruega', homeFlag: getFlag('Noruega'), away: 'Francia', awayFlag: getFlag('Francia'), date: '26 Jun 2026 - 15:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 62, stage: 'grupos', home: 'Senegal', homeFlag: getFlag('Senegal'), away: 'Irak', awayFlag: getFlag('Irak'), date: '26 Jun 2026 - 15:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 63, stage: 'grupos', home: 'Cabo Verde', homeFlag: getFlag('Cabo Verde'), away: 'A. Saudita', awayFlag: getFlag('A. Saudita'), date: '26 Jun 2026 - 20:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 64, stage: 'grupos', home: 'Uruguay', homeFlag: getFlag('Uruguay'), away: 'España', awayFlag: getFlag('España'), date: '26 Jun 2026 - 20:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 65, stage: 'grupos', home: 'Egipto', homeFlag: getFlag('Egipto'), away: 'Irán', awayFlag: getFlag('Irán'), date: '26 Jun 2026 - 23:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 66, stage: 'grupos', home: 'N. Zelanda', homeFlag: getFlag('N. Zelanda'), away: 'Bélgica', awayFlag: getFlag('Bélgica'), date: '26 Jun 2026 - 23:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 67, stage: 'grupos', home: 'Panamá', homeFlag: getFlag('Panamá'), away: 'Inglaterra', awayFlag: getFlag('Inglaterra'), date: '27 Jun 2026 - 17:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 68, stage: 'grupos', home: 'Croacia', homeFlag: getFlag('Croacia'), away: 'Ghana', awayFlag: getFlag('Ghana'), date: '27 Jun 2026 - 17:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 69, stage: 'grupos', home: 'Colombia', homeFlag: getFlag('Colombia'), away: 'Portugal', awayFlag: getFlag('Portugal'), date: '27 Jun 2026 - 19:30', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 70, stage: 'grupos', home: 'RD Congo', homeFlag: getFlag('RD Congo'), away: 'Uzbekistán', awayFlag: getFlag('Uzbekistán'), date: '27 Jun 2026 - 19:30', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 71, stage: 'grupos', home: 'Argelia', homeFlag: getFlag('Argelia'), away: 'Austria', awayFlag: getFlag('Austria'), date: '27 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
-            { id: 72, stage: 'grupos', home: 'Jordania', homeFlag: getFlag('Jordania'), away: 'Argentina', awayFlag: getFlag('Argentina'), date: '27 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 1, stage: 'grupos', home: 'México', homeFlag: getFlag('México'), away: 'Sudáfrica', awayFlag: getFlag('Sudáfrica'), date: '11 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 2, stage: 'grupos', home: 'Corea del Sur', homeFlag: getFlag('Corea del Sur'), away: 'Rep. Checa', awayFlag: getFlag('Rep. Checa'), date: '11 Jun 2026 - 23:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 3, stage: 'grupos', home: 'Canadá', homeFlag: getFlag('Canadá'), away: 'Bosnia y Herz.', awayFlag: getFlag('Bosnia y Herz.'), date: '12 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 4, stage: 'grupos', home: 'EE.UU.', homeFlag: getFlag('EE.UU.'), away: 'Paraguay', awayFlag: getFlag('Paraguay'), date: '12 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 5, stage: 'grupos', home: 'Qatar', homeFlag: getFlag('Qatar'), away: 'Suiza', awayFlag: getFlag('Suiza'), date: '13 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 6, stage: 'grupos', home: 'Brasil', homeFlag: getFlag('Brasil'), away: 'Marruecos', awayFlag: getFlag('Marruecos'), date: '13 Jun 2026 - 19:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 7, stage: 'grupos', home: 'Haití', homeFlag: getFlag('Haití'), away: 'Escocia', awayFlag: getFlag('Escocia'), date: '13 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 8, stage: 'grupos', home: 'Australia', homeFlag: getFlag('Australia'), away: 'Turquía', awayFlag: getFlag('Turquía'), date: '13 Jun 2026 - 01:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 9, stage: 'grupos', home: 'Alemania', homeFlag: getFlag('Alemania'), away: 'Curazao', awayFlag: getFlag('Curazao'), date: '14 Jun 2026 - 14:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 10, stage: 'grupos', home: 'Países Bajos', homeFlag: getFlag('Países Bajos'), away: 'Japón', awayFlag: getFlag('Japón'), date: '14 Jun 2026 - 17:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 11, stage: 'grupos', home: 'C. de Marfil', homeFlag: getFlag('C. de Marfil'), away: 'Ecuador', awayFlag: getFlag('Ecuador'), date: '14 Jun 2026 - 20:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 12, stage: 'grupos', home: 'Suecia', homeFlag: getFlag('Suecia'), away: 'Túnez', awayFlag: getFlag('Túnez'), date: '14 Jun 2026 - 23:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 13, stage: 'grupos', home: 'España', homeFlag: getFlag('España'), away: 'Cabo Verde', awayFlag: getFlag('Cabo Verde'), date: '15 Jun 2026 - 13:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 14, stage: 'grupos', home: 'Bélgica', homeFlag: getFlag('Bélgica'), away: 'Egipto', awayFlag: getFlag('Egipto'), date: '15 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 15, stage: 'grupos', home: 'A. Saudita', homeFlag: getFlag('A. Saudita'), away: 'Uruguay', awayFlag: getFlag('Uruguay'), date: '15 Jun 2026 - 19:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 16, stage: 'grupos', home: 'Irán', homeFlag: getFlag('Irán'), away: 'N. Zelanda', awayFlag: getFlag('N. Zelanda'), date: '15 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 17, stage: 'grupos', home: 'Francia', homeFlag: getFlag('Francia'), away: 'Senegal', awayFlag: getFlag('Senegal'), date: '16 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 18, stage: 'grupos', home: 'Irak', homeFlag: getFlag('Irak'), away: 'Noruega', awayFlag: getFlag('Noruega'), date: '16 Jun 2026 - 19:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 19, stage: 'grupos', home: 'Argentina', homeFlag: getFlag('Argentina'), away: 'Argelia', awayFlag: getFlag('Argelia'), date: '16 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 20, stage: 'grupos', home: 'Austria', homeFlag: getFlag('Austria'), away: 'Jordania', awayFlag: getFlag('Jordania'), date: '16 Jun 2026 - 01:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 21, stage: 'grupos', home: 'Portugal', homeFlag: getFlag('Portugal'), away: 'RD Congo', awayFlag: getFlag('RD Congo'), date: '17 Jun 2026 - 14:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 22, stage: 'grupos', home: 'Inglaterra', homeFlag: getFlag('Inglaterra'), away: 'Croacia', awayFlag: getFlag('Croacia'), date: '17 Jun 2026 - 17:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 23, stage: 'grupos', home: 'Ghana', homeFlag: getFlag('Ghana'), away: 'Panamá', awayFlag: getFlag('Panamá'), date: '17 Jun 2026 - 20:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 24, stage: 'grupos', home: 'Uzbekistán', homeFlag: getFlag('Uzbekistán'), away: 'Colombia', awayFlag: getFlag('Colombia'), date: '17 Jun 2026 - 23:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 25, stage: 'grupos', home: 'Rep. Checa', homeFlag: getFlag('Rep. Checa'), away: 'Sudáfrica', awayFlag: getFlag('Sudáfrica'), date: '18 Jun 2026 - 13:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 26, stage: 'grupos', home: 'Suiza', homeFlag: getFlag('Suiza'), away: 'Bosnia y Herz.', awayFlag: getFlag('Bosnia y Herz.'), date: '18 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 27, stage: 'grupos', home: 'Canadá', homeFlag: getFlag('Canadá'), away: 'Qatar', awayFlag: getFlag('Qatar'), date: '18 Jun 2026 - 19:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 28, stage: 'grupos', home: 'México', homeFlag: getFlag('México'), away: 'Corea del Sur', awayFlag: getFlag('Corea del Sur'), date: '18 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 29, stage: 'grupos', home: 'EE.UU.', homeFlag: getFlag('EE.UU.'), away: 'Australia', awayFlag: getFlag('Australia'), date: '19 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 30, stage: 'grupos', home: 'Escocia', homeFlag: getFlag('Escocia'), away: 'Marruecos', awayFlag: getFlag('Marruecos'), date: '19 Jun 2026 - 19:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 31, stage: 'grupos', home: 'Brasil', homeFlag: getFlag('Brasil'), away: 'Haití', awayFlag: getFlag('Haití'), date: '19 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 32, stage: 'grupos', home: 'Turquía', homeFlag: getFlag('Turquía'), away: 'Paraguay', awayFlag: getFlag('Paraguay'), date: '19 Jun 2026 - 01:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 33, stage: 'grupos', home: 'Países Bajos', homeFlag: getFlag('Países Bajos'), away: 'Suecia', awayFlag: getFlag('Suecia'), date: '20 Jun 2026 - 14:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 34, stage: 'grupos', home: 'Alemania', homeFlag: getFlag('Alemania'), away: 'C. de Marfil', awayFlag: getFlag('C. de Marfil'), date: '20 Jun 2026 - 17:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 35, stage: 'grupos', home: 'Ecuador', homeFlag: getFlag('Ecuador'), away: 'Curazao', awayFlag: getFlag('Curazao'), date: '20 Jun 2026 - 23:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 36, stage: 'grupos', home: 'Túnez', homeFlag: getFlag('Túnez'), away: 'Japón', awayFlag: getFlag('Japón'), date: '20 Jun 2026 - 01:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 37, stage: 'grupos', home: 'España', homeFlag: getFlag('España'), away: 'A. Saudita', awayFlag: getFlag('A. Saudita'), date: '21 Jun 2026 - 13:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 38, stage: 'grupos', home: 'Bélgica', homeFlag: getFlag('Bélgica'), away: 'Irán', awayFlag: getFlag('Irán'), date: '21 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 39, stage: 'grupos', home: 'Uruguay', homeFlag: getFlag('Uruguay'), away: 'Cabo Verde', awayFlag: getFlag('Cabo Verde'), date: '21 Jun 2026 - 19:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 40, stage: 'grupos', home: 'N. Zelanda', homeFlag: getFlag('N. Zelanda'), away: 'Egipto', awayFlag: getFlag('Egipto'), date: '21 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 41, stage: 'grupos', home: 'Argentina', homeFlag: getFlag('Argentina'), away: 'Austria', awayFlag: getFlag('Austria'), date: '22 Jun 2026 - 14:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 42, stage: 'grupos', home: 'Francia', homeFlag: getFlag('Francia'), away: 'Irak', awayFlag: getFlag('Irak'), date: '22 Jun 2026 - 18:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 43, stage: 'grupos', home: 'Noruega', homeFlag: getFlag('Noruega'), away: 'Senegal', awayFlag: getFlag('Senegal'), date: '22 Jun 2026 - 21:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 44, stage: 'grupos', home: 'Jordania', homeFlag: getFlag('Jordania'), away: 'Argelia', awayFlag: getFlag('Argelia'), date: '23 Jun 2026 - 00:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 45, stage: 'grupos', home: 'Portugal', homeFlag: getFlag('Portugal'), away: 'Uzbekistán', awayFlag: getFlag('Uzbekistán'), date: '23 Jun 2026 - 14:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 46, stage: 'grupos', home: 'Inglaterra', homeFlag: getFlag('Inglaterra'), away: 'Ghana', awayFlag: getFlag('Ghana'), date: '23 Jun 2026 - 17:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 47, stage: 'grupos', home: 'Panamá', homeFlag: getFlag('Panamá'), away: 'Croacia', awayFlag: getFlag('Croacia'), date: '23 Jun 2026 - 20:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 48, stage: 'grupos', home: 'Colombia', homeFlag: getFlag('Colombia'), away: 'RD Congo', awayFlag: getFlag('RD Congo'), date: '23 Jun 2026 - 23:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 49, stage: 'grupos', home: 'Suiza', homeFlag: getFlag('Suiza'), away: 'Canadá', awayFlag: getFlag('Canadá'), date: '24 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 50, stage: 'grupos', home: 'Bosnia y Herz.', homeFlag: getFlag('Bosnia y Herz.'), away: 'Qatar', awayFlag: getFlag('Qatar'), date: '24 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 51, stage: 'grupos', home: 'Escocia', homeFlag: getFlag('Escocia'), away: 'Brasil', awayFlag: getFlag('Brasil'), date: '24 Jun 2026 - 19:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 52, stage: 'grupos', home: 'Marruecos', homeFlag: getFlag('Marruecos'), away: 'Haití', awayFlag: getFlag('Haití'), date: '24 Jun 2026 - 19:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 53, stage: 'grupos', home: 'Rep. Checa', homeFlag: getFlag('Rep. Checa'), away: 'México', awayFlag: getFlag('México'), date: '24 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 54, stage: 'grupos', home: 'Sudáfrica', homeFlag: getFlag('Sudáfrica'), away: 'Corea del Sur', awayFlag: getFlag('Corea del Sur'), date: '24 Jun 2026 - 22:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 55, stage: 'grupos', home: 'Curazao', homeFlag: getFlag('Curazao'), away: 'C. de Marfil', awayFlag: getFlag('C. de Marfil'), date: '25 Jun 2026 - 17:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 56, stage: 'grupos', home: 'Ecuador', homeFlag: getFlag('Ecuador'), away: 'Alemania', awayFlag: getFlag('Alemania'), date: '25 Jun 2026 - 17:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 57, stage: 'grupos', home: 'Japón', homeFlag: getFlag('Japón'), away: 'Suecia', awayFlag: getFlag('Suecia'), date: '25 Jun 2026 - 20:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 58, stage: 'grupos', home: 'Túnez', homeFlag: getFlag('Túnez'), away: 'Países Bajos', awayFlag: getFlag('Países Bajos'), date: '25 Jun 2026 - 20:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 59, stage: 'grupos', home: 'Turquía', homeFlag: getFlag('Turquía'), away: 'EE.UU.', awayFlag: getFlag('EE.UU.'), date: '25 Jun 2026 - 23:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 60, stage: 'grupos', home: 'Paraguay', homeFlag: getFlag('Paraguay'), away: 'Australia', awayFlag: getFlag('Australia'), date: '25 Jun 2026 - 23:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 61, stage: 'grupos', home: 'Noruega', homeFlag: getFlag('Noruega'), away: 'Francia', awayFlag: getFlag('Francia'), date: '26 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 62, stage: 'grupos', home: 'Senegal', homeFlag: getFlag('Senegal'), away: 'Irak', awayFlag: getFlag('Irak'), date: '26 Jun 2026 - 16:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 63, stage: 'grupos', home: 'Cabo Verde', homeFlag: getFlag('Cabo Verde'), away: 'A. Saudita', awayFlag: getFlag('A. Saudita'), date: '26 Jun 2026 - 21:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 64, stage: 'grupos', home: 'Uruguay', homeFlag: getFlag('Uruguay'), away: 'España', awayFlag: getFlag('España'), date: '26 Jun 2026 - 21:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 65, stage: 'grupos', home: 'Egipto', homeFlag: getFlag('Egipto'), away: 'Irán', awayFlag: getFlag('Irán'), date: '27 Jun 2026 - 00:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 66, stage: 'grupos', home: 'N. Zelanda', homeFlag: getFlag('N. Zelanda'), away: 'Bélgica', awayFlag: getFlag('Bélgica'), date: '27 Jun 2026 - 00:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 67, stage: 'grupos', home: 'Panamá', homeFlag: getFlag('Panamá'), away: 'Inglaterra', awayFlag: getFlag('Inglaterra'), date: '27 Jun 2026 - 18:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 68, stage: 'grupos', home: 'Croacia', homeFlag: getFlag('Croacia'), away: 'Ghana', awayFlag: getFlag('Ghana'), date: '27 Jun 2026 - 18:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 69, stage: 'grupos', home: 'Colombia', homeFlag: getFlag('Colombia'), away: 'Portugal', awayFlag: getFlag('Portugal'), date: '27 Jun 2026 - 20:30', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 70, stage: 'grupos', home: 'RD Congo', homeFlag: getFlag('RD Congo'), away: 'Uzbekistán', awayFlag: getFlag('Uzbekistán'), date: '27 Jun 2026 - 20:30', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 71, stage: 'grupos', home: 'Argelia', homeFlag: getFlag('Argelia'), away: 'Austria', awayFlag: getFlag('Austria'), date: '27 Jun 2026 - 23:00', status: 'pending', realHomeScore: null, realAwayScore: null },
+            { id: 72, stage: 'grupos', home: 'Jordania', homeFlag: getFlag('Jordania'), away: 'Argentina', awayFlag: getFlag('Argentina'), date: '27 Jun 2026 - 23:00', status: 'pending', realHomeScore: null, realAwayScore: null },
 
             // --- 16AVOS DE FINAL (16 Partidos) ---
             { id: 73, stage: '16avos', home: '2º Grupo A', homeFlag: '❓', away: '2º Grupo B', awayFlag: '❓', date: '28 Jun 2026', status: 'pending', realHomeScore: null, realAwayScore: null },
@@ -220,7 +220,7 @@
             if (!dateStr) return false;
             
             let datePart = dateStr;
-            let timePart = "23:59"; // Por defecto, si el partido no tiene hora confirmada, cierra a la medianoche.
+            let timePart = "23:59"; // Si no hay hora, cierra medianoche
             
             if (dateStr.includes(' - ')) {
                 const parts = dateStr.split(' - ');
@@ -228,19 +228,18 @@
                 timePart = parts[1];
             }
             
-            // Usamos la zona horaria GMT-0400 porque los horarios oficiales (ET) en junio son UTC-4.
-            // Al crear este Date, JS lo convierte a la hora local exacta del usuario.
-            const matchTime = new Date(`${datePart} ${timePart}:00 GMT-0400`);
+            // ACTUALIZADO: Comparamos contra la Hora Oficial Argentina (GMT-0300)
+            const matchTime = new Date(`${datePart} ${timePart}:00 GMT-0300`);
             const now = new Date();
             
-            // 30 minutos en milisegundos = 1800000 ms
+            // 30 minutos en ms = 1800000
             return now.getTime() > (matchTime.getTime() - 1800000);
         };
 
         function App() {
             const [user, setUser] = useState(null);
             const [userName, setUserName] = useState('');
-            const [userEmail, setUserEmail] = useState(''); // Estado para el nuevo correo
+            const [userEmail, setUserEmail] = useState(''); 
             const [isLogged, setIsLogged] = useState(false);
             const [activeTab, setActiveTab] = useState('inicio');
             const [activeStage, setActiveStage] = useState('grupos'); 
@@ -254,11 +253,9 @@
 
             const hasLoadedPreds = useRef(false);
 
-            // Llave Mágica: el correo en minúsculas
             const userDocId = userEmail.trim().toLowerCase();
             const isAdmin = userDocId === 'admin@prode.com';
 
-            // 1. Autenticación (Se mantiene anónima por detrás para dar acceso a la BD)
             useEffect(() => {
                 const initAuth = () => {
                     auth.signInAnonymously().catch(error => console.error("Error Auth:", error));
@@ -275,7 +272,6 @@
                 return () => unsubscribe();
             }, []);
 
-            // 2. Sincronización DB
             useEffect(() => {
                 if (!user) return;
 
@@ -296,20 +292,18 @@
                 return () => { unsubPreds(); unsubGlobal(); };
             }, [user]);
 
-            // 3. Cargar mis datos (Usando el correo como llave)
             useEffect(() => {
                 if (isLogged && userDocId && allPredictions.length > 0 && !hasLoadedPreds.current) {
                     const myData = allPredictions.find(p => p.id === userDocId);
                     if (myData && myData.preds) setPredictions(myData.preds);
-                    if (myData && myData.userName) setUserName(myData.userName); // Actualiza el nombre al que ya estaba guardado
+                    if (myData && myData.userName) setUserName(myData.userName);
                     hasLoadedPreds.current = true;
                 }
             }, [isLogged, userDocId, allPredictions]);
 
-            // 4. Calcular el Ranking
             useEffect(() => {
                 const newBoard = allPredictions
-                .filter(p => p.userName && p.id !== 'admin@prode.com') // Filtramos al admin de la tabla
+                .filter(p => p.userName && p.id !== 'admin@prode.com') 
                 .map(p => {
                     let pts = 0; let perfs = 0;
                     matches.forEach(m => {
@@ -338,11 +332,9 @@
 
             const handleLogin = (e) => {
                 e.preventDefault();
-                // Validamos nombre y correo
                 if (userName.trim().length > 2 && userEmail.trim().length > 5 && userEmail.includes('@')) {
                     setIsLogged(true);
                     if (user) {
-                        // Guardamos o actualizamos usando el correo como ID del documento
                         db.collection('artifacts').doc(PRODE_APP_ID).collection('public').doc('data').collection('predictions').doc(userDocId).set({ userName, email: userDocId }, { merge: true });
                     }
                 } else {
@@ -359,7 +351,6 @@
                 }
             };
 
-            // MODO ADMINISTRADOR SECRETO
             const saveOfficialResults = () => {
                 if (user && isAdmin) {
                     db.collection('artifacts').doc(PRODE_APP_ID).collection('public').doc('data').collection('state').doc('global').set({ matches: matches }, { merge: true });
@@ -384,7 +375,6 @@
             };
 
             const confirmLogout = () => {
-                // Simplemente reseteamos los estados sin tocar Firebase
                 setShowLogoutModal(false);
                 setIsLogged(false);
                 setUserName('');
@@ -393,7 +383,6 @@
                 hasLoadedPreds.current = false;
             };
 
-            // Calcular posiciones reales del torneo agrupado
             const tournamentStandings = useMemo(() => {
                 const standings = {};
                 Object.entries(TOURNAMENT_GROUPS).forEach(([groupName, teams]) => {
@@ -432,10 +421,9 @@
 
             const matchesToShow = matches.filter(m => m.stage === activeStage);
 
-            // Pantalla de Login (Actualizada con Correo)
             if (!isLogged) {
                 return (
-                    <div className="min-h-screen bg-sky-600 flex flex-col items-center justify-center p-4 font-sans relative">
+                    <div className="flex flex-col items-center justify-center p-4 font-sans relative" style={{ minHeight: '100vh' }}>
                         {toast && (
                             <div className="absolute top-10 bg-red-600 text-white px-6 py-3 rounded-full shadow-xl flex items-center gap-2 animate-bounce border border-red-800">
                                 <AlertCircle className="w-5 h-5 text-white" />
@@ -446,10 +434,10 @@
                             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-sky-300 via-white to-sky-300"></div>
                             
                             <div className="bg-sky-100 p-4 rounded-full inline-block mb-4 border border-sky-200 shadow-inner">
-                                <Sun className="w-12 h-12 text-sky-500" />
+                                <Zap className="w-12 h-12 text-sky-500" />
                             </div>
                             
-                            <h1 className="text-3xl font-extrabold text-sky-900 mb-2">Prode Oficina</h1>
+                            <h1 className="text-3xl font-extrabold text-sky-900 mb-2">GruProde</h1>
                             <p className="text-sky-600 font-medium mb-6">Mundial 2026 🇦🇷 Vamos Selección</p>
                             
                             <form onSubmit={handleLogin} className="space-y-3">
@@ -487,13 +475,13 @@
             }
 
             return (
-                <div className="pb-32 bg-sky-50 min-h-screen">
+                <div className="pb-32" style={{ minHeight: '100vh' }}>
                     {/* Header Principal */}
                     <header className="bg-sky-600 shadow-md sticky top-0 z-20">
                         <div className="max-w-2xl mx-auto px-4 py-4 flex justify-between items-center">
                             <div className="flex items-center gap-3">
-                                <Sun className="w-7 h-7 text-yellow-300" />
-                                <h1 className="text-xl font-black text-white tracking-wide">Prode 2026</h1>
+                                <Zap className="w-7 h-7 text-yellow-300" />
+                                <h1 className="text-xl font-black text-white tracking-wide">GruProde 2026</h1>
                             </div>
                             <div className="flex items-center gap-2">
                                 <span className="flex items-center gap-1 text-[10px] text-sky-200 font-bold uppercase tracking-wider"><Cloud className="w-4 h-4" /></span>
@@ -531,12 +519,12 @@
                             </div>
                         )}
 
-                        {/* Pestaña: Mundial (Posiciones Reales) */}
+                        {/* Pestaña: Mundial */}
                         {activeTab === 'inicio' && (
                             <div className="space-y-6">
-                                <div>
+                                <div className="bg-white/90 p-4 rounded-xl shadow-sm border border-sky-100 backdrop-blur-sm">
                                     <h2 className="text-2xl font-black text-sky-900 mb-1">Mundial 2026</h2>
-                                    <p className="text-sky-600 font-medium text-sm mb-6">Fase de Grupos (A a L) - Rendimiento Real.</p>
+                                    <p className="text-sky-600 font-medium text-sm">Fase de Grupos (A a L) - Rendimiento Real.</p>
                                 </div>
                                 
                                 {Object.entries(tournamentStandings).map(([groupName, teams]) => (
@@ -574,14 +562,11 @@
                         {/* Pestaña: Pronósticos */}
                         {activeTab === 'pronosticos' && (
                             <div className="space-y-6">
-                                <div className="flex justify-between items-end mb-2">
-                                    <div>
-                                        <h2 className="text-2xl font-black text-sky-900">Pronósticos</h2>
-                                        <p className="text-sky-600 font-medium text-sm">Cargá tus resultados por fase.</p>
-                                    </div>
+                                <div className="bg-white/90 p-4 rounded-xl shadow-sm border border-sky-100 backdrop-blur-sm">
+                                    <h2 className="text-2xl font-black text-sky-900">Pronósticos</h2>
+                                    <p className="text-sky-600 font-medium text-sm">Cargá tus resultados por fase.</p>
                                 </div>
 
-                                {/* Submenú de Fases */}
                                 <div className="flex overflow-x-auto pb-2 gap-2 hide-scrollbar">
                                     {stagesList.map(stage => (
                                         <button 
@@ -628,7 +613,6 @@
                                                         <span className="font-bold text-slate-700 text-sm">{match.home}</span>
                                                     </div>
                                                     
-                                                    {/* Envoltorio para detectar clicks en inputs bloqueados */}
                                                     <div className="flex items-center gap-2" onClick={() => { if(isLocked && !isFinished) showToast('⏳ Partido bloqueado. Cierra 30 minutos antes del inicio.') }}>
                                                         <input type="number" min="0" value={pred.home} onChange={(e) => setPredictions(p => ({...p, [match.id]: {...p[match.id], home: e.target.value}}))} disabled={disableInputs} className="w-12 h-14 bg-sky-50 border-2 border-sky-200 rounded-xl text-center text-xl font-black text-sky-900 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 disabled:opacity-50 disabled:bg-slate-100 disabled:cursor-not-allowed shadow-inner" />
                                                         <span className="text-sky-300 font-black">-</span>
@@ -653,7 +637,9 @@
                         {/* Pestaña: Ranking */}
                         {activeTab === 'ranking' && (
                             <div className="space-y-4">
-                                <div><h2 className="text-2xl font-black text-sky-900 mb-1">Tabla de la Oficina</h2></div>
+                                <div className="bg-white/90 p-4 rounded-xl shadow-sm border border-sky-100 backdrop-blur-sm">
+                                    <h2 className="text-2xl font-black text-sky-900 mb-1">Tabla de la Oficina</h2>
+                                </div>
                                 <div className="bg-white rounded-2xl border border-sky-200 shadow-sm overflow-hidden">
                                     <table className="w-full text-left border-collapse">
                                         <thead>
@@ -686,7 +672,9 @@
                         {/* Pestaña: Reglas */}
                         {activeTab === 'reglas' && (
                             <div className="space-y-4">
-                                <h2 className="text-2xl font-black text-sky-900 mb-4">Reglas del Prode</h2>
+                                <div className="bg-white/90 p-4 rounded-xl shadow-sm border border-sky-100 backdrop-blur-sm">
+                                    <h2 className="text-2xl font-black text-sky-900">Reglas del Prode</h2>
+                                </div>
                                 <div className="bg-white border-2 border-green-200 p-5 rounded-2xl shadow-sm relative overflow-hidden">
                                     <div className="absolute top-0 right-0 bg-green-500 text-white font-black px-3 py-1 rounded-bl-lg text-xs">3 PUNTOS</div>
                                     <h3 className="text-lg font-black text-slate-800 flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-green-500"/> El Pleno</h3>
@@ -697,12 +685,12 @@
                                     <h3 className="text-lg font-black text-slate-800 flex items-center gap-2"><AlertCircle className="w-5 h-5 text-blue-500"/> El Acierto</h3>
                                     <p className="text-slate-600 font-medium text-sm mt-2">Acertás al ganador o si hay empate (ej: ponés 1-0 y sale 3-0).</p>
                                 </div>
-                                <div className="bg-sky-100 border border-sky-200 p-5 rounded-2xl shadow-sm">
+                                <div className="bg-white/90 border border-sky-200 p-5 rounded-2xl shadow-sm backdrop-blur-sm">
                                     <h3 className="font-bold text-sky-900 mb-2 text-sm uppercase">Detalles del Formato (48 equipos)</h3>
                                     <ul className="text-sky-800 text-sm space-y-2 list-disc list-inside font-medium">
-                                        <li>Los puntos en eliminatorias (16avos en adelante) se cuentan por el resultado de los 90 minutos reglamentarios.</li>
-                                        <li>Las apuestas de cada partido se bloquean <b>30 minutos antes</b> de su inicio (hora oficial).</li>
-                                        <li>El botón de "Guardar" guarda los cambios de todas las fases juntas.</li>
+                                        <li>Los puntos en eliminatorias se cuentan por el resultado de los 90 minutos reglamentarios.</li>
+                                        <li>Las apuestas de cada partido se bloquean <b>30 minutos antes</b> de su inicio (Hora de Argentina).</li>
+                                        <li>El botón de "Guardar" guarda los cambios de <b>todas las fases juntas</b>.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -711,15 +699,14 @@
                         {/* Pestaña Secreta: Panel Admin */}
                         {activeTab === 'admin' && isAdmin && (
                             <div className="space-y-6">
-                                <div>
+                                <div className="bg-white/90 p-4 rounded-xl shadow-sm border border-sky-100 backdrop-blur-sm">
                                     <h2 className="text-2xl font-black text-red-600">Panel de Control</h2>
-                                    <p className="text-slate-600 font-medium text-sm mb-4">Cargá los resultados oficiales reales.</p>
+                                    <p className="text-slate-600 font-medium text-sm">Cargá los resultados oficiales reales.</p>
                                 </div>
                                 <div className="bg-red-50 border border-red-200 p-4 rounded-xl mb-4">
                                     <p className="text-xs text-red-800 font-bold">⚠️ ATENCIÓN ADMIN: Al ingresar un resultado y guardar, se calcularán los puntos de todos los usuarios automáticamente.</p>
                                 </div>
 
-                                {/* Submenú de Fases ADMIN */}
                                 <div className="flex overflow-x-auto pb-2 gap-2 hide-scrollbar">
                                     {stagesList.map(stage => (
                                         <button 
@@ -767,7 +754,6 @@
                     <nav className="fixed bottom-0 w-full bg-white border-t border-sky-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] pb-safe">
                         <div className="max-w-2xl mx-auto flex justify-around p-2">
                             {[{id:'inicio', icon: Globe, label: 'Mundial'}, {id:'pronosticos', icon: Calendar, label: 'Partidos'}, {id:'ranking', icon: Trophy, label: 'Ranking'}, {id:'reglas', icon: Info, label: 'Reglas'}]
-                            // Agregamos el ícono del Panel Admin solo si sos administrador
                             .concat(isAdmin ? [{id:'admin', icon: AlertCircle, label: 'Admin'}] : [])
                             .map(tab => (
                                 <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`flex flex-col items-center gap-1 p-3 rounded-xl transition-colors ${isAdmin ? 'w-1/5' : 'w-1/4'} ${activeTab === tab.id ? (tab.id === 'admin' ? 'text-red-600 bg-red-50' : 'text-sky-600 bg-sky-50') : 'text-slate-400 hover:text-sky-500'}`}>
@@ -785,7 +771,6 @@
     </script>
     
     <style>
-        /* Ocultar barra de scroll en el submenú horizontal */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
